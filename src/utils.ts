@@ -28,7 +28,7 @@ export async function getValidTags(prefixRegex: RegExp) {
 }
 
 export async function getLastTag() {
-  let tags = await listTags();
+  const tags = await listTags();
   return tags[0];
 }
 
