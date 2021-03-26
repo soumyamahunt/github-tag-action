@@ -27,6 +27,11 @@ export async function getValidTags(prefixRegex: RegExp) {
   return validTags;
 }
 
+export async function getLastTag() {
+  let tags = await listTags();
+  return tags[0];
+}
+
 export async function getCommits(baseRef: string, headRef: string) {
   const commits = await compareCommits(baseRef, headRef);
 

@@ -9,6 +9,7 @@ import {
   getLatestPrereleaseTag,
   getLatestTag,
   getValidTags,
+  getLastTag,
   mapCustomReleaseRules,
 } from './utils';
 import { createTag } from './github';
@@ -80,7 +81,7 @@ export default async function main() {
     const latestVersion = core.getInput('latest_ver');
     if (latestVersion) {
       previousVersion = parse(latestVersion);
-      previousTag = latestTag;
+      previousTag = await getLastTag();
     } else {
       if (!latestPrereleaseTag) {
         previousTag = latestTag;
