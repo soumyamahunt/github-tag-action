@@ -27,9 +27,16 @@ export async function getValidTags(prefixRegex: RegExp) {
   return validTags;
 }
 
-export async function getLastTag() {
+export async function getPreviousTag(tagPrefix: string) {
   const tags = await listTags();
-  return tags[0];
+  return (
+    tags.find((tag) => tag !== undefined) || {
+      name: `${tagPrefix}0.0.0`,
+      commit: {
+        sha: 'HEAD',
+      },
+    }
+  );
 }
 
 export async function getCommits(baseRef: string, headRef: string) {
